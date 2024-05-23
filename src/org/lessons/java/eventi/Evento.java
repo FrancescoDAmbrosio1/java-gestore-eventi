@@ -7,12 +7,12 @@ import java.time.ZoneId;
 public class Evento {
 	
 	private String titolo;
-	private String data;
+	private LocalDate data;
 	private int postiTotali;
 	private static int postiPrenotati;
 
 	//costruttore
-	public Evento(String titolo, String data, int postiTotali, int postiPrenotati) {
+	public Evento(String titolo, LocalDate data, int postiTotali, int postiPrenotati) {
 		this.titolo = titolo;
 		this.data = data;
 		this.postiTotali = postiTotali;
@@ -20,7 +20,6 @@ public class Evento {
 	}
 
 	LocalDate dataLocale = LocalDate.now(ZoneId.of("Europe/Rome"));
-	LocalDate dataEvento = inserisciData();
 	
 	public LocalDate inserisciData() {
 		int anno = 0;
@@ -34,21 +33,28 @@ public class Evento {
 	// posti disponibili deve restituire un messaggio di avviso.
 	
 	public int prenota() {
-		int postoInPrenotazione;
-		if(dataEvento.isAfter(dataLocale)) {
-			postoInPrenotazione = postiPrenotati + 1;
-			System.out.println("Estato prenotato un posto per l'avento selezionato.");
+		if(data.isBefore(dataLocale) || postiPrenotati == postiTotali) {
+			System.out.println("-------------------  ATTENZIONE ---------------- \n"
+					+ "L'evento è già passato e non è stato prenotato alcun posto oppure non ci sono più"
+					+ "posti disponibili!!!!");
 		} else {
-			postoInPrenotazione = postiPrenotati;
-			System.out.println("ATTENZIONE --- L'evento è già passato...non è stato prenotato alcun posto!!!!");
+			postiPrenotati += 1;
+			System.out.println("E' stato prenotato un posto per l'avento selezionato.");
 		}
-		return postoInPrenotazione;
+		return postiPrenotati;
 	}
 	
 	// metodo che riduce di uno i posti prenotati. Se l’evento è già passato o non ci sono  
 	// prenotazioni restituisce un messaggio di avviso.
 
-	public void disdici() {
+	public int disdici() {		
+		if(data.isBefore(dataLocale)) {
+			System.out.println("ATTENZIONE --- L'evento è già passato...non è stato disdetto alcun posto!!!!");
+		} else {
+			postiPrenotati -= 1;
+			System.out.println("E' stato DISDETTO un posto per l'avento selezionato.");
+	}
+	return postiPrenotati;
 		
 	}
 	
@@ -65,15 +71,24 @@ public class Evento {
 		this.titolo = titolo;
 	}
 
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setData(int anno, int mese, int giorno) {
+		if(data.isBefore(dataLocale)) {
+			System.out.println("Data inserita non valida....Inserire una data successiva a quella odierna");
+		} else {
+			data = LocalDate.of(anno, mese, giorno);
+		}
 	}
 
-	public int getPostiTotali() {
+	public int getPostiTotali(int input) {
+		if(input < 0) {
+			System.out.println("Il numero di posti totali disponibili non è valido.");
+		} else {
+			postiTotali = input;
+		}
 		return postiTotali;
 	}
 
