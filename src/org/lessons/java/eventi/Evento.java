@@ -13,7 +13,7 @@ public class Evento {
 	private static int postiPrenotati;
 
 	//costruttore
-	public Evento(String titolo, LocalDate data, int postiTotali, int postiPrenotati) {
+	public Evento(String titolo, LocalDate data2, int postiTotali, int postiPrenotati) {
 		this.titolo = titolo;
 		this.data = data;
 		this.postiTotali = postiTotali;
@@ -61,7 +61,7 @@ public class Evento {
 	
 	@Override
 	public String toString() {
-		String dataFormattata = data.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+		String dataFormattata = data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		return dataFormattata + " - " + titolo;
 	}
 
