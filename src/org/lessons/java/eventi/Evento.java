@@ -7,13 +7,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Evento {
 	
-	private String titolo;
-	private LocalDate data;
+	public String titolo;
+	public LocalDate data;
 	private int postiTotali;
 	private static int postiPrenotati;
 
 	//costruttore
-	public Evento(String titolo, LocalDate data2, int postiTotali, int postiPrenotati) {
+	public Evento(String titolo, LocalDate data, int postiTotali, int postiPrenotati) {
 		this.titolo = titolo;
 		this.data = data;
 		this.postiTotali = postiTotali;
@@ -22,13 +22,6 @@ public class Evento {
 
 	LocalDate dataLocale = LocalDate.now(ZoneId.of("Europe/Rome"));
 	
-	public LocalDate inserisciData() {
-		int anno = 0;
-		int mese = 0;
-		int giorno = 0;
-		LocalDate dataEvento = LocalDate.of(anno, mese, giorno);
-		return dataEvento;
-	}
 	
 	// metodo che aggiunge uno ai posti prenotati. Se l’evento è già passato o non ha 
 	// posti disponibili deve restituire un messaggio di avviso.
@@ -62,7 +55,7 @@ public class Evento {
 	@Override
 	public String toString() {
 		String dataFormattata = data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		return dataFormattata + " - " + titolo;
+		return dataFormattata + " - " + " titolo: " + getTitolo() + "\n";
 	}
 
 	public String getTitolo() {
@@ -77,15 +70,20 @@ public class Evento {
 		return data;
 	}
 
-	public void setData(int anno, int mese, int giorno) {
+	public void setData(CharSequence input) {
+		data = LocalDate.parse(input);
 		if(data.isBefore(dataLocale)) {
 			System.out.println("Data inserita non valida....Inserire una data successiva a quella odierna");
 		} else {
-			data = LocalDate.of(anno, mese, giorno);
+			System.out.println("La data inserita è corretta");
 		}
 	}
 
-	public int getPostiTotali(int input) {
+	public int getPostiTotali() {
+		return postiTotali;
+	}
+	
+	public int setPostiTotali(int input) {
 		if(input < 0) {
 			System.out.println("Il numero di posti totali disponibili non è valido.");
 		} else {
@@ -95,6 +93,10 @@ public class Evento {
 	}
 
 	public int getPostiPrenotati() {
+		return postiPrenotati;
+	}
+	
+	public int setPostiPrenotati() {
 		return postiPrenotati;
 	}
 
