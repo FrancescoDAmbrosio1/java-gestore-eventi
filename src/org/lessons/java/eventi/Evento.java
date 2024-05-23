@@ -2,6 +2,7 @@ package org.lessons.java.eventi;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 
 public class Evento {
@@ -60,7 +61,8 @@ public class Evento {
 	
 	@Override
 	public String toString() {
-		return "Evento [titolo=" + titolo + ", data=" + data + "]";
+		String dataFormattata = data.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+		return dataFormattata + " - " + titolo;
 	}
 
 	public String getTitolo() {
