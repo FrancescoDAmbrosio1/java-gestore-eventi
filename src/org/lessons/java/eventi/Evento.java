@@ -9,7 +9,7 @@ public class Evento {
 	
 	public String titolo;
 	public LocalDate data;
-	private int postiTotali;
+	protected int postiTotali;
 	private static int postiPrenotati;
 
 	//costruttore
@@ -46,7 +46,7 @@ public class Evento {
 			System.out.println("ATTENZIONE --- L'evento è già passato...non è stato disdetto alcun posto!!!!");
 		} else {
 			postiPrenotati -= 1;
-			System.out.println("E' stato DISDETTO un posto per l'avento selezionato.");
+			System.out.println("E' stato disdetto un posto per l'avento selezionato.");
 	}
 	return postiPrenotati;
 		
@@ -70,13 +70,16 @@ public class Evento {
 		return data;
 	}
 
-	public void setData(CharSequence input) {
+	public boolean setData(CharSequence input) {
+		boolean result = false;
 		data = LocalDate.parse(input);
 		if(data.isBefore(dataLocale)) {
 			System.out.println("Data inserita non valida....Inserire una data successiva a quella odierna");
+			result = true;
 		} else {
 			System.out.println("La data inserita è corretta");
 		}
+		return result;
 	}
 
 	public int getPostiTotali() {
