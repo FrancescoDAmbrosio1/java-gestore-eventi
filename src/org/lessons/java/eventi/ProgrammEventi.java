@@ -17,7 +17,7 @@ public class ProgrammEventi implements Comparator<Evento>{
 	
 	@Override
 	public String toString() {
-		return "ProgrammEventi [titolo=" + titolo + ", eventi=" + eventi + "]";
+		return "[ \nTitolo evento: " + titolo + ", eventi: " + eventi + "]";
 	}
 
 	//metodo che aggiunge alla lista un nuovo evento
