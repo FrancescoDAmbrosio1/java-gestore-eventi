@@ -10,7 +10,7 @@ public class Evento {
 	public String titolo;
 	public LocalDate data;
 	protected int postiTotali;
-	private static int postiPrenotati;
+	private int postiPrenotati;
 
 	//costruttore
 	public Evento(String titolo, LocalDate data, int postiTotali, int postiPrenotati) {
@@ -81,25 +81,28 @@ public class Evento {
 	}
 
 	public int getPostiTotali() {
-		return postiTotali;
-	}
-	
-	public int setPostiTotali(int input) {
-		if(input < 0) {
+		if(postiTotali < 0) {
 			System.out.println("Il numero di posti totali disponibili non è valido.");
-		} else {
-			postiTotali = input;
 		}
 		return postiTotali;
 	}
+	
+//	public int setPostiTotali(int input) {
+//		if(input < 0) {
+//			System.out.println("Il numero di posti totali disponibili non è valido.");
+//		} else {
+//			postiTotali = input;
+//		}
+//		return postiTotali;
+//	}
 
 	public int getPostiPrenotati() {
 		return postiPrenotati;
 	}
 	
-	public int setPostiPrenotati() {
-		return postiPrenotati;
-	}
+//	public int setPostiPrenotati() {
+//		return postiPrenotati;
+//	}
 	
 	public void resocontoPostiEvento() {
 		System.out.println("Resoconto posti evento --> \n"
@@ -107,4 +110,20 @@ public class Evento {
 				"\n  - Posti ancora disponibili : " + (getPostiTotali() - getPostiPrenotati()));
 	}
 
+	public static void stampaMenu() {
+		System.out.println("\nDigitare il numero dell'attività da eseguire: \n"
+				+ "[1] - Inserisci un nuovo evento generico\n"
+				+ "[2] - Inserisci un nuovo evento di tipo Concerto\n"
+				+ "[3] - Gestisci un evento in programma\n"
+				+ "[4] - Esci dal programma\n");
+	}
+	
+	public static void menuGestioneEvento() {
+		System.out.println("\nDigitare il numero dell'attività da eseguire: \n"
+				+ "[3] - Prenota posti\n"
+				+ "[4] - Disdici posti\n"
+				+ "[5] - Visualizza lista eventi in programmazione\n"
+				+ "[6] - Cancella intera programmazione eventi\n"
+				+ "[7] - Torna al menu principale");
+	}
 }

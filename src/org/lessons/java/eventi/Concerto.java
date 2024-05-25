@@ -3,7 +3,6 @@ package org.lessons.java.eventi;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 
 public class Concerto extends Evento {
 

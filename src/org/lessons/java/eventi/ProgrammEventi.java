@@ -15,6 +15,11 @@ public class ProgrammEventi implements Comparator<Evento>{
 		this.eventi = new ArrayList<Evento>();
 	}
 	
+	@Override
+	public String toString() {
+		return "ProgrammEventi [titolo=" + titolo + ", eventi=" + eventi + "]";
+	}
+
 	//metodo che aggiunge alla lista un nuovo evento
 	public void aggiungiEvento(Evento input){
 		eventi.add(input);
@@ -56,9 +61,9 @@ public class ProgrammEventi implements Comparator<Evento>{
 
 	@Override
 	public int compare(Evento evento1, Evento evento2) {
-		if (evento1.getData() < evento2.getData()) {
+//		if (evento1.getData() < evento2.getData()) {
 			
-		}
+//		}
 		return 0;
 	}
 
