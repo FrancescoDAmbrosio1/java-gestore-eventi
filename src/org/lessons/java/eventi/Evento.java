@@ -33,7 +33,6 @@ public class Evento {
 					+ "posti disponibili!!!!");
 		} else {
 			postiPrenotati += 1;
-			System.out.println("E' stato prenotato un posto per l'avento selezionato.");
 		}
 		return postiPrenotati;
 	}
@@ -46,7 +45,6 @@ public class Evento {
 			System.out.println("ATTENZIONE --- L'evento è già passato...non è stato disdetto alcun posto!!!!");
 		} else {
 			postiPrenotati -= 1;
-			System.out.println("E' stato disdetto un posto per l'avento selezionato.");
 	}
 	return postiPrenotati;
 		
@@ -55,7 +53,7 @@ public class Evento {
 	@Override
 	public String toString() {
 		String dataFormattata = data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		return dataFormattata + " - " + " titolo: " + getTitolo() + "\n";
+		return dataFormattata + " - " + " titolo: " + getTitolo();
 	}
 
 	public String getTitolo() {
@@ -101,6 +99,12 @@ public class Evento {
 	
 	public int setPostiPrenotati() {
 		return postiPrenotati;
+	}
+	
+	public void resocontoPostiEvento() {
+		System.out.println("Resoconto posti evento --> \n"
+				+ "  - Posti totali evento : " + getPostiTotali() +
+				"\n  - Posti ancora disponibili : " + (getPostiTotali() - getPostiPrenotati()));
 	}
 
 }

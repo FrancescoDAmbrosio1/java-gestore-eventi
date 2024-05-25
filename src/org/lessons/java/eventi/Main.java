@@ -1,6 +1,8 @@
 package org.lessons.java.eventi;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -12,6 +14,7 @@ public class Main {
 		int postiTotali = 0;
 		int postiDaPrenotare;
 		int postiDaDisdire;
+		String oraLocale;
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -19,6 +22,7 @@ public class Main {
 		System.out.println("---------------- GESTORE EVENTI ------------------");
 		System.out.println("--------------------------------------------------\n");
 		Evento eventoCreato = new Evento(titolo, LocalDate.parse("2024-01-01"), postiTotali, 0);
+		Evento eventoConcerto = new Concerto(titolo, LocalDate.parse("2024-01-01"),postiTotali, 0, LocalTime.parse("10:15"), 0.0);
 		do {
 			stampaMenu();
 			scelta = scan.nextInt();
@@ -47,16 +51,24 @@ public class Main {
 					
 					System.out.println("Indicare quanti posti vuoi prenotare per l'evento " + titolo + ": ");
 					postiDaPrenotare = scan.nextInt();
-					for(int i = 0; i < postiDaPrenotare;i++) {
+					int i;
+					for(i = 0; i < postiDaPrenotare;i++) {
 						eventoCreato.prenota();						
 					}
+					System.out.println("Per l'evento " + eventoCreato.toString() + " sono stati prenotati n° "
+							+ " " + i + " posti.");
+					eventoCreato.resocontoPostiEvento();
 					break;
 				case 3:
 					System.out.println("Indicare quanti posti vuoi disdire per l'evento " + titolo + ": ");
 					postiDaDisdire = scan.nextInt();
-					for(int i = 0; i < postiDaDisdire;i++) {
-						eventoCreato.disdici();						
+					int j;
+					for(j = 0; j < postiDaDisdire;j++) {
+						eventoCreato.disdici();
 					}
+					System.out.println("Per l'evento " + eventoCreato.toString() + " sono stati prenotati n° "
+							+ " " + j + " posti.");
+					eventoCreato.resocontoPostiEvento();
 					break;
 				case 4:
 					System.out.println("------ USCITA DAL GESTORE EVENTI ------");
