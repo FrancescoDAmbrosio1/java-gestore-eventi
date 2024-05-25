@@ -114,16 +114,12 @@ public class Evento {
 		System.out.println("\nDigitare il numero dell'attività da eseguire: \n"
 				+ "[1] - Inserisci un nuovo evento generico\n"
 				+ "[2] - Inserisci un nuovo evento di tipo Concerto\n"
-				+ "[3] - Gestisci un evento in programma\n"
-				+ "[4] - Esci dal programma\n");
-	}
-	
-	public static void menuGestioneEvento() {
-		System.out.println("\nDigitare il numero dell'attività da eseguire: \n"
 				+ "[3] - Prenota posti\n"
 				+ "[4] - Disdici posti\n"
 				+ "[5] - Visualizza lista eventi in programmazione\n"
 				+ "[6] - Cancella intera programmazione eventi\n"
-				+ "[7] - Torna al menu principale");
+				+ "[7] - Esci dal programma\n");
 	}
+	
+	
 }

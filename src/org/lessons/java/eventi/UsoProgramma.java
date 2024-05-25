@@ -77,17 +77,27 @@ public class UsoProgramma {
 					break;
 					
 				case 3: 
-					Evento.menuGestioneEvento();
-					break;
 					
-				case 4:
-					System.out.println("------ PASSA ALLA GESTIONE EVENTI ------");
+					System.out.println("Indicare quanti posti vuoi prenotare per l'evento " + titolo + ": ");
+					postiDaPrenotare = scan.nextInt();
+					int i;
+					for(i = 0; i < postiDaPrenotare;i++) {
+						evento.prenota();						
+					}
+					System.out.println("Per l'evento " + evento.toString() + " sono stati prenotati n° "
+							+ " " + i + " posti.");
+					evento.resocontoPostiEvento();
+				break;
+					
+				case 7:
+					System.out.println("------ USCITA DAL PROGRAMMA ------");
 					break;
 					
 			}
 			ProgrammEventi listaEventi = new ProgrammEventi(titolo);
 			listaEventi.aggiungiEvento(evento);	
-		}while(scelta != 2);
+			System.out.println("La lista degli eventi è la seguente -->" + listaEventi.toString());
+		}while(scelta != 7);
 		
 		
 
