@@ -8,9 +8,10 @@ import java.time.format.DateTimeFormatter;
 public class Evento {
 	
 	public String titolo;
-	public LocalDate data;
+	public static LocalDate data;
 	protected int postiTotali;
 	private int postiPrenotati;
+	
 
 	//costruttore
 	public Evento(String titolo, LocalDate data, int postiTotali, int postiPrenotati) {
@@ -53,7 +54,7 @@ public class Evento {
 	@Override
 	public String toString() {
 		String dataFormattata = data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		return dataFormattata + " - " + " titolo: " + getTitolo();
+		return "\ndata: " + dataFormattata + " - " + " titolo: " + getTitolo();
 	}
 
 	public String getTitolo() {
@@ -68,14 +69,12 @@ public class Evento {
 		return data;
 	}
 
-	public boolean setData(CharSequence input) {
+	public static boolean setData(CharSequence input, LocalDate dataLocale) {
 		boolean result = false;
 		data = LocalDate.parse(input);
 		if(data.isBefore(dataLocale)) {
 			System.out.println("Data inserita non valida....Inserire una data successiva a quella odierna");
 			result = true;
-		} else {
-			System.out.println("La data inserita è corretta");
 		}
 		return result;
 	}

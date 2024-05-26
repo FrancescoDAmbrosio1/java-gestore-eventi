@@ -7,13 +7,13 @@ import java.time.format.DateTimeFormatter;
 public class Concerto extends Evento {
 
 	//attributi proprio della classe Concerto
-	private LocalTime oraLocale;
+	private LocalTime oraEvento;
 	private double prezzo;
 	
 	public Concerto(String titolo, LocalDate data2, int postiTotali, int postiPrenotati, 
-			LocalTime oraLocale, double prezzo) {
+			LocalTime oraEvento, double prezzo) {
 		super(titolo, data2, postiTotali, postiPrenotati);
-		this.oraLocale = oraLocale;
+		this.oraEvento = oraEvento;
 		this.prezzo = prezzo;
 		
 	}
@@ -21,11 +21,11 @@ public class Concerto extends Evento {
 
 
 	public LocalTime getOraLocale() {
-		return oraLocale;
+		return oraEvento;
 	}
 
-	public void setOraLocale(LocalTime oraLocale) {
-		this.oraLocale = oraLocale;
+	public void setOraLocale(LocalTime oraEvento) {
+		this.oraEvento = oraEvento;
 	}
 
 	public double getPrezzo() {
@@ -37,7 +37,7 @@ public class Concerto extends Evento {
 	}
 	
 	public String formattaOra() {
-		String oraFormattata =  oraLocale.format(DateTimeFormatter.ofPattern("hh:mm:ss"));
+		String oraFormattata =  oraEvento.format(DateTimeFormatter.ofPattern("hh:mm:ss"));
 		return oraFormattata;
 	}
 	
