@@ -37,7 +37,7 @@ public class Concerto extends Evento {
 	}
 	
 	public String formattaOra() {
-		String oraFormattata =  oraEvento.format(DateTimeFormatter.ofPattern("hh:mm:ss"));
+		String oraFormattata =  oraEvento.format(DateTimeFormatter.ofPattern("hh:mm"));
 		return oraFormattata;
 	}
 	

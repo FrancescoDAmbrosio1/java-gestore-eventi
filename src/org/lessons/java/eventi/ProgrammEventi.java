@@ -67,4 +67,25 @@ public class ProgrammEventi implements Comparator<Evento>{
 		return 0;
 	}
 
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void get(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Evento eventoPosti(String input) {
+		Evento eventoSelezionato = null;
+		for (int i = 0; i < eventi.size(); i++) {
+			if (input.equals(eventi.get(i).titolo)) {
+				eventoSelezionato = eventi.get(i);
+			}
+		}
+		return eventoSelezionato;
+	}
+		
+
 }

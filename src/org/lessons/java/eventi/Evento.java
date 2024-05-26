@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 public class Evento {
 	
 	public String titolo;
-	public static LocalDate data;
+	public LocalDate data;
 	protected int postiTotali;
 	private int postiPrenotati;
 	
@@ -69,7 +69,7 @@ public class Evento {
 		return data;
 	}
 
-	public static boolean setData(CharSequence input, LocalDate dataLocale) {
+	public boolean verificaData(CharSequence input, LocalDate dataLocale) {
 		boolean result = false;
 		data = LocalDate.parse(input);
 		if(data.isBefore(dataLocale)) {
@@ -78,6 +78,10 @@ public class Evento {
 		}
 		return result;
 	}
+	
+	public void setData(LocalDate input) {
+		this.data = input;
+	}
 
 	public int getPostiTotali() {
 		if(postiTotali < 0) {
@@ -85,23 +89,12 @@ public class Evento {
 		}
 		return postiTotali;
 	}
-	
-//	public int setPostiTotali(int input) {
-//		if(input < 0) {
-//			System.out.println("Il numero di posti totali disponibili non è valido.");
-//		} else {
-//			postiTotali = input;
-//		}
-//		return postiTotali;
-//	}
+
 
 	public int getPostiPrenotati() {
 		return postiPrenotati;
 	}
-	
-//	public int setPostiPrenotati() {
-//		return postiPrenotati;
-//	}
+
 	
 	public void resocontoPostiEvento() {
 		System.out.println("Resoconto posti evento --> \n"
@@ -117,7 +110,8 @@ public class Evento {
 				+ "[4] - Disdici posti\n"
 				+ "[5] - Visualizza lista eventi in programmazione\n"
 				+ "[6] - Cancella intera programmazione eventi\n"
-				+ "[7] - Esci dal programma\n");
+				+ "[7] - Ricerca evento per data\n"
+				+ "[8] - Esci dal programma\n");
 	}
 	
 	
