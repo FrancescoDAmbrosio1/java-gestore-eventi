@@ -11,6 +11,8 @@ public class Evento {
 	public LocalDate data;
 	protected int postiTotali;
 	private int postiPrenotati;
+	public boolean result;
+	public int postiDisponibili;
 	
 
 	//costruttore
@@ -27,15 +29,31 @@ public class Evento {
 	// metodo che aggiunge uno ai posti prenotati. Se l’evento è già passato o non ha 
 	// posti disponibili deve restituire un messaggio di avviso.
 	
-	public int prenota() {
-		if(data.isBefore(dataLocale) || postiPrenotati == postiTotali) {
-			System.out.println("-------------------  ATTENZIONE ---------------- \n"
-					+ "L'evento è già passato e non è stato prenotato alcun posto oppure non ci sono più"
-					+ "posti disponibili!!!!");
+	public int prenota(int input, int disponibili) {
+		if(data.isBefore(dataLocale) || (disponibili - input) < 0) {
+			result = true;
 		} else {
 			postiPrenotati += 1;
 		}
 		return postiPrenotati;
+	}
+	
+	public int calcoloPostiDisponibili() {
+		postiDisponibili = postiTotali - postiPrenotati;
+		return postiDisponibili;
+	}
+	
+	public void outputPrenotazione(String titoloEvento, int postiDaPrenotare) {
+		if(result == true) {
+			System.out.println("\n-------------------  ATTENZIONE ---------------- \n"
+					+ "L'evento è già passato e non è stato prenotato alcun posto oppure i posti richiesti"
+					+ " sono superiori a quelli disponibili!!!!\n");			
+			result = false;
+		} else {
+			System.out.println("\nPer l'evento " + titoloEvento.toString() + " sono stati prenotati n° "
+					+ " " + postiDaPrenotare + " posti.");
+		}
+		resocontoPostiEvento();
 	}
 	
 	// metodo che riduce di uno i posti prenotati. Se l’evento è già passato o non ci sono  
@@ -43,7 +61,7 @@ public class Evento {
 
 	public int disdici() {		
 		if(data.isBefore(dataLocale)) {
-			System.out.println("ATTENZIONE --- L'evento è già passato...non è stato disdetto alcun posto!!!!");
+			System.out.println("\nATTENZIONE --- L'evento è già passato...non è stato disdetto alcun posto!!!!\n");
 		} else {
 			postiPrenotati -= 1;
 	}
@@ -112,6 +130,18 @@ public class Evento {
 				+ "[6] - Cancella intera programmazione eventi\n"
 				+ "[7] - Ricerca evento per data\n"
 				+ "[8] - Esci dal programma\n");
+	}
+	
+	public static void header() {
+		System.out.println("--------------------------------------------------");
+		System.out.println("---------------- GESTORE EVENTI ------------------");
+		System.out.println("--------------------------------------------------\n");
+	}
+	public static void footer() {
+		System.out.println("----------------------------------------------");
+		System.out.println("------------ USCITA DAL PROGRAMMA ------------");
+		System.out.println("-------------***** BYE BYE *****--------------");
+		System.out.println("----------------------------------------------");		
 	}
 	
 	

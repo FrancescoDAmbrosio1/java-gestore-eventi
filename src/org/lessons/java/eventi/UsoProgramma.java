@@ -20,16 +20,17 @@ public class UsoProgramma {
 		double prezzo;
 		int postiDaPrenotare;
 		String eventoSelezionato;
+		int postiPrenotati;
+		int postiDisponibili;
 		
-		
-		Scanner scan = new Scanner(System.in);
+		// creato due scanner : uno per le stringhe ed uno per il resto.
+		Scanner scanInt = new Scanner(System.in);
+		Scanner scanString = new Scanner(System.in);
 		LocalDate dataLocale = LocalDate.now(ZoneId.of("Europe/Rome"));
 
+		Evento.header();
 		
 		
-		System.out.println("--------------------------------------------------");
-		System.out.println("---------------- GESTORE EVENTI ------------------");
-		System.out.println("--------------------------------------------------\n");
 		
 		titoloLista = "PROGRAMMAZIONE EVENTI";
 		
@@ -37,23 +38,25 @@ public class UsoProgramma {
 		
 			do {
 				Evento.stampaMenu();
-				scelta = scan.nextInt();
+				System.out.print("\nInserisci la tua scelta:");
+				scelta = scanInt.nextInt();
 				switch(scelta) {
 				case 1:
-					System.out.println("Inserisci il titolo dell'evento (Usare il simolo '_' al posto dello spazio) : ");
-					titolo = scan.next();
-					System.out.println("Inserisci data evento nel formato yyyy-mm-gg: ");
-					data = scan.next();
+					System.out.print("\nInserisci il titolo dell'evento: ");
+					titolo = scanString.nextLine();
+					
+					System.out.print("Inserisci data evento nel formato yyyy-mm-gg: ");
+					data = scanString.nextLine();
 					dataEvento = null;
 					
-					System.out.println("Inserisci i posti totali disponibili per l'evento: ");
-					postiTotali = scan.nextInt();
+					System.out.print("Inserisci i posti totali disponibili per l'evento: ");
+					postiTotali = scanInt.nextInt();
 					
 					Evento eventoCreato = new Evento(titolo, dataEvento, postiTotali, postiTotali);
 					if(eventoCreato.verificaData(data, dataLocale)) {
 						do {
-							System.out.println("Inserisci nuova data evento nel formato yyyy-mm-gg: ");
-							data = scan.next();
+							System.out.print("Inserisci nuova data evento nel formato yyyy-mm-gg: ");
+							data = scanString.nextLine();
 							eventoCreato.data = LocalDate.parse(data);
 							
 						} while(LocalDate.parse(data).isBefore(dataLocale));
@@ -64,23 +67,23 @@ public class UsoProgramma {
 					break;
 				
 				case 2:
-					System.out.println("Inserisci il titolo del Concerto (Usare il simolo '_' al posto dello spazio): ");
-					titolo = scan.next();
-					System.out.println("Inserisci data evento nel formato yyyy-mm-gg: ");
-					data = scan.next();
+					System.out.print("\nInserisci il titolo del Concerto: ");
+					titolo = scanString.nextLine();
+					System.out.print("Inserisci data evento nel formato yyyy-mm-gg: ");
+					data = scanString.nextLine();
 					dataEvento = null;
-					System.out.println("Inserisci i posti totali disponibili per l'evento: ");
-					postiTotali = scan.nextInt();
-					System.out.println("Inserisci orario evento nel formato hh:mm : ");
-					oraEvento = scan.next();
-					System.out.println("Inserisci il prezzo del ticket per l'evento (##,##): ");
-					prezzo = scan.nextDouble();
+					System.out.print("Inserisci i posti totali disponibili per l'evento: ");
+					postiTotali = scanInt.nextInt();
+					System.out.print("Inserisci orario evento nel formato hh:mm : ");
+					oraEvento = scanString.nextLine();
+					System.out.print("Inserisci il prezzo del ticket per l'evento (##,##): ");
+					prezzo = scanInt.nextDouble();
 					
 					Evento concertoCreato = new Concerto(titolo, dataEvento, postiTotali, 0, LocalTime.parse(oraEvento), prezzo);
 					if(concertoCreato.verificaData(data, dataLocale)) {
 						do {
 							System.out.println("Inserisci nuova data evento nel formato yyyy-mm-gg: ");
-							data = scan.next();
+							data = scanString.nextLine();
 							concertoCreato.data = LocalDate.parse(data);
 						} while(LocalDate.parse(data).isBefore(dataLocale));
 					} else {
@@ -93,50 +96,51 @@ public class UsoProgramma {
 					
 				case 3:
 					System.out.println(listaEventi.toString() + "\nInserire il titolo dell'evento scelto: \n");
-					eventoSelezionato = scan.next();
+					eventoSelezionato = scanString.nextLine();
 					System.out.println("Indicare quanti posti vuoi prenotare per l'evento " + eventoSelezionato + ": ");
-					postiDaPrenotare = scan.nextInt();
+					postiDaPrenotare = scanInt.nextInt();
 					Evento eventoPostiPren = listaEventi.eventoPosti(eventoSelezionato);
-					int j;
-					for(j = 0; j < postiDaPrenotare;j++) {
-								eventoPostiPren.prenota();						
-						}
-					System.out.println("Per l'evento " + eventoPostiPren.toString() + " sono stati prenotati n° "
-									+ " " + j + " posti.");
-							eventoPostiPren.resocontoPostiEvento();
+					postiPrenotati = 0;
+					postiDisponibili = eventoPostiPren.calcoloPostiDisponibili();
+					for(int j = 0; j < postiDaPrenotare;j++) {
+							postiPrenotati = eventoPostiPren.prenota(postiDaPrenotare, postiDisponibili);	
+					}
+					eventoPostiPren.outputPrenotazione(eventoPostiPren.titolo, postiDaPrenotare);
 					break;
 				
 				case 4:
 					System.out.println(listaEventi.toString() + "\nInserire il titolo dell'evento scelto: \n");
-					eventoSelezionato = scan.next();
+					eventoSelezionato = scanString.nextLine();
 					System.out.println("Indicare quanti posti vuoi disdire per l'evento " + eventoSelezionato + ": ");
-					postiDaPrenotare = scan.nextInt();
+					postiDaPrenotare = scanInt.nextInt();
 					Evento eventoPostiDisd = listaEventi.eventoPosti(eventoSelezionato);
 					int y;
 					for(y = 0; y < postiDaPrenotare;y++) {
 								eventoPostiDisd.disdici();					
 						}
-					System.out.println("Per l'evento " + eventoPostiDisd.toString() + " sono stati prenotati n° "
+					
+					System.out.println("Per l'evento " + eventoPostiDisd.toString() + " sono stati disdetti n° "
 									+ " " + y + " posti.");
 							eventoPostiDisd.resocontoPostiEvento();
 					break;
 					
 				case 5:
-					System.out.println("In programmazione ci sono " + listaEventi.numeroEventiProgramma() + 
-							" eventi in Programma.");
+					System.out.println("\nIn programmazione ci sono " + listaEventi.numeroEventiProgramma() + 
+							" eventi.\n");
 					System.out.println("LISTA: " + listaEventi.toString());
 					break;
 					
 				case 6:
-					System.out.println("Hai scelto di cancellare l'intera lista eventi..."
-							+ "l'operazione è irreversibile. Sei sicuro? (si/no)");
-					String risposta = scan.next();
+					System.out.println("\n  *************** ATTENZIONE ***************\n"
+									+ "Hai scelto di cancellare l'intera lista eventi...\n"
+									+ "l'operazione è IRREVERSIBILE. Sei sicuro? [si/no]");
+					String risposta = scanString.nextLine();
 					listaEventi.svuotaElencoProgrammi(risposta);
 					break;
 					
 				case 7:
 					System.out.println("Inserisci la data di ricerca eventi (yyyy-mm-gg) :");
-					String dataRicerca = scan.next();
+					String dataRicerca = scanString.nextLine();
 					
 					List<Evento> listaPerDataOutput = listaEventi.listaPerData(LocalDate.parse(dataRicerca));
 					System.out.println("Eventi corrispondenti alla data " + dataRicerca +
@@ -145,10 +149,11 @@ public class UsoProgramma {
 				}
 						
 			} while (scelta != 8);
-			System.out.println("LISTA: " + listaEventi.toString());
-			
+			Evento.footer();
 			
 	}
+
+	
 }
 
 

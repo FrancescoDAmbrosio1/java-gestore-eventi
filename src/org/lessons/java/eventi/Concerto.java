@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Concerto extends Evento {
 
-	//attributi proprio della classe Concerto
+	//attributi propri della classe Concerto
 	private LocalTime oraEvento;
 	private double prezzo;
 	
