@@ -131,9 +131,11 @@ public class UsoProgramma {
 					break;
 					
 				case 6:
-					System.out.println("\n  *************** ATTENZIONE ***************\n"
-									+ "Hai scelto di cancellare l'intera lista eventi...\n"
-									+ "l'operazione è IRREVERSIBILE. Sei sicuro? [si/no]");
+					System.out.println("\n********************** ATTENZIONE ***********************\n"
+									   + "*   Hai scelto di cancellare l'intera lista eventi...   *\n"
+									   + "*      l'operazione è IRREVERSIBILE. Sei sicuro?        *\n"
+									   + "*********************************************************");
+					System.out.print("\nInserisci la tua scelta [Si/No]:");
 					String risposta = scanString.nextLine();
 					listaEventi.svuotaElencoProgrammi(risposta);
 					break;
@@ -143,8 +145,12 @@ public class UsoProgramma {
 					String dataRicerca = scanString.nextLine();
 					
 					List<Evento> listaPerDataOutput = listaEventi.listaPerData(LocalDate.parse(dataRicerca));
-					System.out.println("Eventi corrispondenti alla data " + dataRicerca +
-							"\n" + listaPerDataOutput);
+					if(listaPerDataOutput.size() == 0) {
+						System.out.println("\n -- Non sono presenti eventi per la data selezionata. -- ");
+					}else {
+						System.out.println("\nEventi corrispondenti alla data " + dataRicerca +
+								"\n" + listaPerDataOutput);						
+					}
 					break;
 				}
 						

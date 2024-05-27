@@ -45,9 +45,8 @@ public class Evento {
 	
 	public void outputPrenotazione(String titoloEvento, int postiDaPrenotare) {
 		if(result == true) {
-			System.out.println("\n-------------------  ATTENZIONE ---------------- \n"
-					+ "L'evento è già passato e non è stato prenotato alcun posto oppure i posti richiesti"
-					+ " sono superiori a quelli disponibili!!!!\n");			
+			System.out.println("\nATTENZIONE --> L'evento è già passato e non è stato prenotato "
+					+ "alcun posto oppure i posti richiesti sono superiori a quelli disponibili.\n");			
 			result = false;
 		} else {
 			System.out.println("\nPer l'evento " + titoloEvento.toString() + " sono stati prenotati n° "
@@ -102,9 +101,6 @@ public class Evento {
 	}
 
 	public int getPostiTotali() {
-		if(postiTotali < 0) {
-			System.out.println("Il numero di posti totali disponibili non è valido.");
-		}
 		return postiTotali;
 	}
 
@@ -115,9 +111,9 @@ public class Evento {
 
 	
 	public void resocontoPostiEvento() {
-		System.out.println("Resoconto posti evento --> \n"
-				+ "  - Posti totali evento : " + getPostiTotali() +
-				"\n  - Posti ancora disponibili : " + (getPostiTotali() - getPostiPrenotati()));
+		System.out.println("\nResoconto posti evento --> \n"
+				+ "  	- Posti totali evento : " + getPostiTotali() +
+				"\n  	- Posti ancora disponibili : " + (getPostiTotali() - getPostiPrenotati()));
 	}
 
 	public static void stampaMenu() {
@@ -133,15 +129,16 @@ public class Evento {
 	}
 	
 	public static void header() {
-		System.out.println("--------------------------------------------------");
-		System.out.println("---------------- GESTORE EVENTI ------------------");
-		System.out.println("--------------------------------------------------\n");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("------------------- GESTORE EVENTI ---------------------");
+		System.out.println("--------------------------------------------------------\n");
 	}
+	
 	public static void footer() {
-		System.out.println("----------------------------------------------");
-		System.out.println("------------ USCITA DAL PROGRAMMA ------------");
-		System.out.println("-------------***** BYE BYE *****--------------");
-		System.out.println("----------------------------------------------");		
+		System.out.println("--------------------------------------------------------");
+		System.out.println("------------------ USCITA DAL PROGRAMMA ---------------");
+		System.out.println("--------------------***** BYE BYE *****-----------------");
+		System.out.println("--------------------------------------------------------");		
 	}
 	
 	

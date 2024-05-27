@@ -2,6 +2,7 @@ package org.lessons.java.eventi;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class Concerto extends Evento {
@@ -17,7 +18,7 @@ public class Concerto extends Evento {
 		this.prezzo = prezzo;
 		
 	}
-
+	
 
 
 	public LocalTime getOraLocale() {
