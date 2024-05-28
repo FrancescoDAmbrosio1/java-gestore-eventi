@@ -2,8 +2,9 @@ package org.lessons.java.eventi;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
+
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Concerto extends Evento {
 
@@ -38,9 +39,10 @@ public class Concerto extends Evento {
 	}
 	
 	public String formattaOra() {
-		String oraFormattata =  oraEvento.format(DateTimeFormatter.ofPattern("hh:mm"));
+		String oraFormattata =  oraEvento.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
 		return oraFormattata;
 	}
+
 	
 	public String formattaPrezzo() {
 		String prezzoFormattato = String.format("%.02f", prezzo);
@@ -49,7 +51,7 @@ public class Concerto extends Evento {
 
 	@Override
 	public String toString() {
-		return super.toString() + " - Orario inizio: " + formattaOra() + " - Costo biglietto: "
+		return super.toString() + " - Orario inizio: " + formattaOra() + " Locali - Costo biglietto: "
 				+ formattaPrezzo();
 	}
 }

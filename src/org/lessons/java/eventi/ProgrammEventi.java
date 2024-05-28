@@ -2,10 +2,10 @@ package org.lessons.java.eventi;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 
-public class ProgrammEventi implements Comparator<Evento>{
+public class ProgrammEventi {
 	
 	private String titolo;
 	private List<Evento> eventi; 
@@ -55,17 +55,11 @@ public class ProgrammEventi implements Comparator<Evento>{
 	
 	//metodo che restituisce lista eventi ordinati per data
 	public List<Evento> listaOrdinataPerData(){
-		List<Evento> eventiOrdinata = new ArrayList<Evento>();
-		return eventiOrdinata;
+//		List<Evento> eventiOrdinata = new ArrayList<Evento>();
+		Collections.sort(eventi);
+		return eventi;
 	}
 
-	@Override
-	public int compare(Evento evento1, Evento evento2) {
-//		if (evento1.getData() < evento2.getData()) {
-			
-//		}
-		return 0;
-	}
 
 	public int size() {
 		// TODO Auto-generated method stub

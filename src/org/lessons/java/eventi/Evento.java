@@ -5,7 +5,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 
-public class Evento {
+public class Evento implements Comparable<Evento>{
 	
 	public String titolo;
 	public LocalDate data;
@@ -45,8 +45,9 @@ public class Evento {
 	
 	public void outputPrenotazione(String titoloEvento, int postiDaPrenotare) {
 		if(result == true) {
-			System.out.println("\nATTENZIONE --> L'evento è già passato e non è stato prenotato "
-					+ "alcun posto oppure i posti richiesti sono superiori a quelli disponibili.\n");			
+			System.out.println("\nATTENZIONE --> Non è stato prenotato alcun posto per uno dei seguenti motivi:"
+					+ "\n		- Evento già passato "
+					+ "\n		- I posti richiesti sono superiori a quelli disponibili.\n");			
 			result = false;
 		} else {
 			System.out.println("\nPer l'evento " + titoloEvento.toString() + " sono stati prenotati n° "
@@ -90,7 +91,7 @@ public class Evento {
 		boolean result = false;
 		data = LocalDate.parse(input);
 		if(data.isBefore(dataLocale)) {
-			System.out.println("Data inserita non valida....Inserire una data successiva a quella odierna");
+			System.out.println("\nData inserita non valida....Inserire una data successiva a quella odierna");
 			result = true;
 		}
 		return result;
@@ -123,8 +124,8 @@ public class Evento {
 				+ "[3] - Prenota posti\n"
 				+ "[4] - Disdici posti\n"
 				+ "[5] - Visualizza lista eventi in programmazione\n"
-				+ "[6] - Cancella intera programmazione eventi\n"
-				+ "[7] - Ricerca evento per data\n"
+				+ "[6] - Ricerca evento per data\n"
+				+ "[7] - Cancella intera programmazione eventi\n"
 				+ "[8] - Esci dal programma\n");
 	}
 	
@@ -136,9 +137,14 @@ public class Evento {
 	
 	public static void footer() {
 		System.out.println("--------------------------------------------------------");
-		System.out.println("------------------ USCITA DAL PROGRAMMA ---------------");
+		System.out.println("------------------ USCITA DAL PROGRAMMA ----------------");
 		System.out.println("--------------------***** BYE BYE *****-----------------");
 		System.out.println("--------------------------------------------------------");		
+	}
+
+	@Override
+	public int compareTo(Evento input) {
+		return this.data.compareTo(input.data);
 	}
 	
 	

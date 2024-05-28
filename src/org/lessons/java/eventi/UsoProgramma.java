@@ -60,8 +60,12 @@ public class UsoProgramma {
 							eventoCreato.data = LocalDate.parse(data);
 							
 						} while(LocalDate.parse(data).isBefore(dataLocale));
-					} else 
-					System.out.println("Hai inserito il seguente evento: " + eventoCreato.toString());
+					} else {
+						dataEvento = LocalDate.parse(data);
+					}
+					
+					System.out.print("\n	Hai inserito il seguente evento: " + eventoCreato.toString() +
+							"\n");
 					
 					listaEventi.aggiungiEvento(eventoCreato);
 					break;
@@ -89,15 +93,16 @@ public class UsoProgramma {
 					} else {
 						dataEvento = LocalDate.parse(data);
 					} 
-					System.out.println("Hai inserito il seguente evento: " + concertoCreato.toString());
+					System.out.print("\n	Hai inserito il seguente evento: " + concertoCreato.toString() +
+							"\n");
 					
 					listaEventi.aggiungiEvento(concertoCreato);
 					break;
 					
 				case 3:
-					System.out.println(listaEventi.toString() + "\nInserire il titolo dell'evento scelto: \n");
+					System.out.print(listaEventi.toString() + "\nInserire il titolo dell'evento scelto: \n");
 					eventoSelezionato = scanString.nextLine();
-					System.out.println("Indicare quanti posti vuoi prenotare per l'evento " + eventoSelezionato + ": ");
+					System.out.print("Indicare quanti posti vuoi prenotare per l'evento " + eventoSelezionato + ": ");
 					postiDaPrenotare = scanInt.nextInt();
 					Evento eventoPostiPren = listaEventi.eventoPosti(eventoSelezionato);
 					postiPrenotati = 0;
@@ -127,30 +132,30 @@ public class UsoProgramma {
 				case 5:
 					System.out.println("\nIn programmazione ci sono " + listaEventi.numeroEventiProgramma() + 
 							" eventi.\n");
-					System.out.println("LISTA: " + listaEventi.toString());
+					System.out.println("LISTA eventi ordinati per data: " + listaEventi.listaOrdinataPerData());
 					break;
 					
 				case 6:
-					System.out.println("\n********************** ATTENZIONE ***********************\n"
-									   + "*   Hai scelto di cancellare l'intera lista eventi...   *\n"
-									   + "*      l'operazione è IRREVERSIBILE. Sei sicuro?        *\n"
-									   + "*********************************************************");
-					System.out.print("\nInserisci la tua scelta [Si/No]:");
-					String risposta = scanString.nextLine();
-					listaEventi.svuotaElencoProgrammi(risposta);
-					break;
-					
-				case 7:
-					System.out.println("Inserisci la data di ricerca eventi (yyyy-mm-gg) :");
+					System.out.print("Inserisci la data di ricerca eventi (yyyy-mm-gg) :");
 					String dataRicerca = scanString.nextLine();
 					
 					List<Evento> listaPerDataOutput = listaEventi.listaPerData(LocalDate.parse(dataRicerca));
 					if(listaPerDataOutput.size() == 0) {
-						System.out.println("\n -- Non sono presenti eventi per la data selezionata. -- ");
+						System.out.println("\n -- Non sono presenti eventi per la data inserita. -- ");
 					}else {
 						System.out.println("\nEventi corrispondenti alla data " + dataRicerca +
 								"\n" + listaPerDataOutput);						
 					}
+					break;
+					
+				case 7:
+					System.out.println("\n********************** ATTENZIONE ***********************\n"
+							   + "*   Hai scelto di cancellare l'intera lista eventi...   *\n"
+							   + "*      l'operazione è IRREVERSIBILE. Sei sicuro?        *\n"
+							   + "*********************************************************");
+					System.out.print("\nInserisci la tua scelta [Si/No]:\n");
+					String risposta = scanString.nextLine();
+					listaEventi.svuotaElencoProgrammi(risposta);
 					break;
 				}
 						
