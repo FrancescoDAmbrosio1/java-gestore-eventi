@@ -2,7 +2,6 @@ package org.lessons.java.eventi;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
@@ -12,6 +11,7 @@ public class Concerto extends Evento {
 	private LocalTime oraEvento;
 	private double prezzo;
 	
+	//costruttore
 	public Concerto(String titolo, LocalDate data2, int postiTotali, int postiPrenotati, 
 			LocalTime oraEvento, double prezzo) {
 		super(titolo, data2, postiTotali, postiPrenotati);
@@ -20,8 +20,6 @@ public class Concerto extends Evento {
 		
 	}
 	
-
-
 	public LocalTime getOraLocale() {
 		return oraEvento;
 	}
@@ -43,7 +41,6 @@ public class Concerto extends Evento {
 		return oraFormattata;
 	}
 
-	
 	public String formattaPrezzo() {
 		String prezzoFormattato = String.format("%.02f", prezzo);
 		return prezzoFormattato + "€.";

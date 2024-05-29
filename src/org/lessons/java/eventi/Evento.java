@@ -38,11 +38,13 @@ public class Evento implements Comparable<Evento>{
 		return postiPrenotati;
 	}
 	
+	//metodo che ritorna il numero di posti disponibili di un evento
 	public int calcoloPostiDisponibili() {
 		postiDisponibili = postiTotali - postiPrenotati;
 		return postiDisponibili;
 	}
 	
+	//metodo che stampa in base alla disponibilità di posti all'evento un output evento
 	public void outputPrenotazione(String titoloEvento, int postiDaPrenotare) {
 		if(result == true) {
 			System.out.println("\nATTENZIONE --> Non è stato prenotato alcun posto per uno dei seguenti motivi:"
@@ -58,7 +60,6 @@ public class Evento implements Comparable<Evento>{
 	
 	// metodo che riduce di uno i posti prenotati. Se l’evento è già passato o non ci sono  
 	// prenotazioni restituisce un messaggio di avviso.
-
 	public int disdici() {		
 		if(data.isBefore(dataLocale)) {
 			System.out.println("\nATTENZIONE --- L'evento è già passato...non è stato disdetto alcun posto!!!!\n");
@@ -86,7 +87,8 @@ public class Evento implements Comparable<Evento>{
 	public LocalDate getData() {
 		return data;
 	}
-
+	
+	//metodo che verifica se la data inserita per l'evento è antecedente a quella odierna
 	public boolean verificaData(CharSequence input, LocalDate dataLocale) {
 		boolean result = false;
 		data = LocalDate.parse(input);
@@ -110,7 +112,7 @@ public class Evento implements Comparable<Evento>{
 		return postiPrenotati;
 	}
 
-	
+	//metodo che stampa un resoconto numerico dei posti evento
 	public void resocontoPostiEvento() {
 		System.out.println("\nResoconto posti evento --> \n"
 				+ "  	- Posti totali evento : " + getPostiTotali() +

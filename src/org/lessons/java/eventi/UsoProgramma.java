@@ -73,13 +73,17 @@ public class UsoProgramma {
 				case 2:
 					System.out.print("\nInserisci il titolo del Concerto: ");
 					titolo = scanString.nextLine();
+					
 					System.out.print("Inserisci data evento nel formato yyyy-mm-gg: ");
 					data = scanString.nextLine();
 					dataEvento = null;
+					
 					System.out.print("Inserisci i posti totali disponibili per l'evento: ");
 					postiTotali = scanInt.nextInt();
+					
 					System.out.print("Inserisci orario evento nel formato hh:mm : ");
 					oraEvento = scanString.nextLine();
+					
 					System.out.print("Inserisci il prezzo del ticket per l'evento (##,##): ");
 					prezzo = scanInt.nextDouble();
 					
@@ -102,8 +106,10 @@ public class UsoProgramma {
 				case 3:
 					System.out.print(listaEventi.toString() + "\nInserire il titolo dell'evento scelto: \n");
 					eventoSelezionato = scanString.nextLine();
+					
 					System.out.print("Indicare quanti posti vuoi prenotare per l'evento " + eventoSelezionato + ": ");
 					postiDaPrenotare = scanInt.nextInt();
+					
 					Evento eventoPostiPren = listaEventi.eventoPosti(eventoSelezionato);
 					postiPrenotati = 0;
 					postiDisponibili = eventoPostiPren.calcoloPostiDisponibili();
@@ -116,8 +122,10 @@ public class UsoProgramma {
 				case 4:
 					System.out.println(listaEventi.toString() + "\nInserire il titolo dell'evento scelto: \n");
 					eventoSelezionato = scanString.nextLine();
+					
 					System.out.println("Indicare quanti posti vuoi disdire per l'evento " + eventoSelezionato + ": ");
 					postiDaPrenotare = scanInt.nextInt();
+					
 					Evento eventoPostiDisd = listaEventi.eventoPosti(eventoSelezionato);
 					int y;
 					for(y = 0; y < postiDaPrenotare;y++) {

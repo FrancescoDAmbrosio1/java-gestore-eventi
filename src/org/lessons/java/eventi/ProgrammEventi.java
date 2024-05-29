@@ -55,22 +55,11 @@ public class ProgrammEventi {
 	
 	//metodo che restituisce lista eventi ordinati per data
 	public List<Evento> listaOrdinataPerData(){
-//		List<Evento> eventiOrdinata = new ArrayList<Evento>();
 		Collections.sort(eventi);
 		return eventi;
 	}
-
-
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public void get(int i) {
-		// TODO Auto-generated method stub
-		
-	}
 	
+	//metodo che prende evento selezionato per la gestione dei posti
 	public Evento eventoPosti(String input) {
 		Evento eventoSelezionato = null;
 		for (int i = 0; i < eventi.size(); i++) {
@@ -79,7 +68,6 @@ public class ProgrammEventi {
 			}
 		}
 		return eventoSelezionato;
-	}
-		
+	}	
 
 }
