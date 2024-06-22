@@ -30,8 +30,6 @@ public class UsoProgramma {
 
 		Evento.header();
 		
-		
-		
 		titoloLista = "PROGRAMMAZIONE EVENTI";
 		
 			ProgrammEventi listaEventi = new ProgrammEventi(titoloLista);
